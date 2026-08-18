@@ -1,56 +1,1572 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#101827">
-<title>Life RPG</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07111f">
+<title>Life RPG ⚔️</title>
+
 <style>
-:root{--bg:#08111f;--card:#111d30;--line:#263852;--text:#f7fbff;--muted:#9fb0c7;--green:#79e58d;--gold:#ffd166}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% -10%,#254c46,#08111f 45%);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,Arial,sans-serif}
-.app{max-width:900px;margin:auto;padding:16px 12px 80px}.top,.sectionhead,.profile,.row{display:flex;align-items:center;gap:10px}.top,.sectionhead{justify-content:space-between}.brand{font-size:24px;font-weight:900}.sub,.muted{color:var(--muted);font-size:12px}
-button,input,select{font:inherit}button{cursor:pointer}.icon,.ghost{background:#ffffff0d;color:#fff;border:1px solid #ffffff15;border-radius:14px;padding:10px}.hero{margin-top:14px;padding:18px;border-radius:26px;background:linear-gradient(145deg,#182a42,#0e192a);border:1px solid #ffffff12;box-shadow:0 16px 45px #0005}.avatar{width:82px;height:82px;border-radius:25px;display:grid;place-items:center;background:#ffffff09;border:2px solid #79e58d88;font-size:50px}.name{font-size:22px;font-weight:900}.rank{color:var(--gold);font-weight:800;margin-top:4px}.barrow{display:grid;grid-template-columns:38px 1fr 65px;gap:8px;align-items:center;margin-top:12px;font-size:12px}.bar{height:10px;background:#ffffff12;border-radius:20px;overflow:hidden}.fill{height:100%;background:linear-gradient(90deg,#79e58d,#48c86b);border-radius:20px}.energy .fill{background:linear-gradient(90deg,#ffd166,#ff9f1c)}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}.stat{padding:10px;border-radius:15px;text-align:center;background:#ffffff08}.stat b{display:block;font-size:18px}.stat span{font-size:10px;color:var(--muted)}
-.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:14px 0}.tab{padding:11px 4px;border-radius:14px;background:#ffffff09;color:#cbd7e7;border:1px solid #ffffff10;font-weight:800}.tab.active{background:var(--green);color:#08111f}.task{display:flex;align-items:center;gap:11px;background:var(--card);border:1px solid var(--line);border-radius:19px;padding:13px;margin:9px 0}.task.done{opacity:.55}.check{width:32px;height:32px;border-radius:10px;border:2px solid #536781;background:transparent;color:#07101c;font-weight:900}.done .check{background:var(--green);border-color:var(--green)}.taskmain{flex:1}.tasktitle{font-weight:850}.taskmeta{font-size:11px;color:var(--muted);margin-top:5px}.xp{color:var(--gold);font-weight:900}.tag{padding:4px 7px;border-radius:8px;background:#6db7ff18;color:#9dceff}.btn{background:var(--green);color:#07101c;border:0;border-radius:13px;padding:10px 13px;font-weight:900}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.card{background:var(--card);border:1px solid var(--line);border-radius:19px;padding:14px}.card h3{margin:0 0 7px}.big{font-size:27px;font-weight:900}.empty{text-align:center;padding:25px;color:var(--muted);background:#ffffff06;border-radius:18px}.overlay{position:fixed;inset:0;background:#000b;display:none;align-items:flex-end;z-index:5}.overlay.show{display:flex}.modal{width:min(720px,100%);background:#0e1a2b;border-radius:27px 27px 0 0;padding:18px;max-height:90vh;overflow:auto}.form{display:grid;gap:9px}.field{width:100%;padding:12px;border-radius:13px;background:#0b1627;border:1px solid var(--line);color:#fff}.choice{display:grid;grid-template-columns:1fr 1fr;gap:10px}.choice button{padding:16px;border-radius:18px;background:#ffffff08;color:#fff;border:2px solid #ffffff10}.choice button.selected{border-color:var(--green);background:#79e58d18}.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#fff;color:#07101c;padding:10px 15px;border-radius:13px;font-weight:800;display:none;z-index:20}.toast.show{display:block}
-@media(max-width:520px){.stats{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.brand{font-size:21px}}
+*{box-sizing:border-box}
+
+:root{
+  --bg:#07111f;
+  --bg2:#0c1b2e;
+  --card:#12233b;
+  --card2:#172b46;
+  --line:#29415e;
+  --text:#f7fbff;
+  --muted:#9fb0c5;
+  --green:#66e58a;
+  --green2:#39c96b;
+  --gold:#ffc857;
+  --blue:#61a9ff;
+  --purple:#a879ff;
+  --red:#ff6b7a;
+  --cyan:#48d8df;
+  --shadow:0 16px 40px rgba(0,0,0,.25);
+}
+
+html,body{
+  margin:0;
+  min-height:100%;
+  background:
+    radial-gradient(circle at 80% 0%,#153454 0,transparent 35%),
+    radial-gradient(circle at 10% 80%,#103e3b 0,transparent 30%),
+    var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,Arial,sans-serif;
+}
+
+body{padding:18px 12px 50px}
+
+button,input,select{font:inherit}
+
+button{
+  border:0;
+  cursor:pointer;
+  color:var(--text);
+}
+
+.app{
+  max-width:900px;
+  margin:auto;
+}
+
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-bottom:18px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.logo{
+  width:50px;
+  height:50px;
+  border-radius:16px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,#1e3d59,#13243a);
+  border:1px solid var(--line);
+  font-size:25px;
+  box-shadow:var(--shadow);
+}
+
+.brand h1{
+  margin:0;
+  font-size:25px;
+}
+
+.brand p{
+  margin:3px 0 0;
+  color:var(--muted);
+  font-size:13px;
+}
+
+.settings-btn{
+  width:48px;
+  height:48px;
+  border-radius:15px;
+  background:#15263d;
+  border:1px solid var(--line);
+  font-size:22px;
+}
+
+.hero{
+  background:
+    linear-gradient(145deg,rgba(40,77,112,.6),rgba(10,24,42,.9)),
+    var(--card);
+  border:1px solid #2b4664;
+  border-radius:30px;
+  padding:22px;
+  box-shadow:var(--shadow);
+  margin-bottom:16px;
+}
+
+.profile{
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+
+.avatar{
+  width:82px;
+  height:82px;
+  border-radius:25px;
+  display:grid;
+  place-items:center;
+  font-size:50px;
+  background:linear-gradient(145deg,#213e60,#0b1728);
+  border:3px solid var(--green);
+  flex-shrink:0;
+}
+
+.profile h2{
+  margin:0 0 4px;
+  font-size:23px;
+}
+
+.rank{
+  color:var(--gold);
+  font-weight:800;
+}
+
+.small{
+  color:var(--muted);
+  font-size:13px;
+}
+
+.progress{
+  margin-top:18px;
+}
+
+.progress-top{
+  display:flex;
+  justify-content:space-between;
+  color:var(--muted);
+  font-size:13px;
+  margin-bottom:7px;
+}
+
+.bar{
+  height:14px;
+  border-radius:99px;
+  background:#081321;
+  overflow:hidden;
+  border:1px solid #20364e;
+}
+
+.fill{
+  height:100%;
+  width:0%;
+  transition:.35s;
+}
+
+.xp-fill{
+  background:linear-gradient(90deg,var(--green),#9af3ae);
+}
+
+.energy-fill{
+  background:linear-gradient(90deg,#ffc857,#ff9f43);
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin-top:18px;
+}
+
+.stat{
+  background:rgba(8,21,36,.65);
+  border:1px solid #203852;
+  border-radius:18px;
+  padding:13px 8px;
+  text-align:center;
+}
+
+.stat strong{
+  display:block;
+  font-size:22px;
+}
+
+.stat span{
+  color:var(--muted);
+  font-size:12px;
+}
+
+.nav{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+  margin-bottom:16px;
+}
+
+.nav button{
+  padding:13px 8px;
+  border-radius:17px;
+  background:#101f33;
+  border:1px solid #213952;
+  font-weight:800;
+}
+
+.nav button.active{
+  background:var(--green);
+  color:#06150d;
+  border-color:var(--green);
+}
+
+.section{
+  display:none;
+}
+
+.section.active{
+  display:block;
+}
+
+.card{
+  background:rgba(18,35,59,.92);
+  border:1px solid var(--line);
+  border-radius:23px;
+  padding:18px;
+  margin-bottom:13px;
+  box-shadow:0 10px 30px rgba(0,0,0,.12);
+}
+
+.card-title{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:14px;
+}
+
+.card-title h3{
+  margin:0;
+  font-size:18px;
+}
+
+.badge{
+  padding:5px 9px;
+  border-radius:99px;
+  background:#203650;
+  color:#c9d8e8;
+  font-size:12px;
+}
+
+.task{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  background:#0d1d30;
+  border:1px solid #213b57;
+  border-radius:18px;
+  padding:13px;
+  margin:9px 0;
+}
+
+.task.done{
+  opacity:.55;
+}
+
+.task.done .task-name{
+  text-decoration:line-through;
+}
+
+.task-icon{
+  width:44px;
+  height:44px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  background:#18324d;
+  font-size:22px;
+  flex-shrink:0;
+}
+
+.task-main{
+  flex:1;
+}
+
+.task-name{
+  font-weight:800;
+}
+
+.task-meta{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:4px;
+}
+
+.complete{
+  padding:9px 12px;
+  border-radius:12px;
+  background:var(--green);
+  color:#06150d;
+  font-weight:900;
+}
+
+.complete:disabled{
+  background:#31445a;
+  color:#8998aa;
+  cursor:default;
+}
+
+.category-title{
+  margin:22px 0 8px;
+  font-size:15px;
+  color:var(--gold);
+}
+
+.skills{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:11px;
+}
+
+.skill{
+  background:#0d1d30;
+  border:1px solid #223d58;
+  border-radius:19px;
+  padding:15px;
+}
+
+.skill-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+}
+
+.skill-name{
+  font-weight:900;
+}
+
+.skill-level{
+  color:var(--purple);
+  font-weight:900;
+}
+
+.skill-bar{
+  height:8px;
+  margin-top:10px;
+  background:#07121f;
+  border-radius:99px;
+  overflow:hidden;
+}
+
+.skill-fill{
+  height:100%;
+  background:linear-gradient(90deg,var(--purple),#d0b1ff);
+}
+
+.shop{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+
+.item{
+  background:#0d1d30;
+  border:1px solid #233e59;
+  border-radius:20px;
+  padding:16px;
+}
+
+.item-icon{
+  font-size:35px;
+}
+
+.item h4{
+  margin:8px 0 4px;
+}
+
+.item p{
+  margin:0 0 12px;
+  color:var(--muted);
+  font-size:12px;
+  min-height:32px;
+}
+
+.buy{
+  width:100%;
+  padding:10px;
+  border-radius:12px;
+  background:var(--gold);
+  color:#2b2105;
+  font-weight:900;
+}
+
+.buy:disabled{
+  opacity:.4;
+}
+
+.character{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:10px;
+}
+
+.big-avatar{
+  width:150px;
+  height:150px;
+  border-radius:42px;
+  display:grid;
+  place-items:center;
+  font-size:90px;
+  background:linear-gradient(145deg,#234568,#0b1728);
+  border:4px solid var(--green);
+  margin-bottom:15px;
+}
+
+.choice-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:10px;
+}
+
+.choice{
+  padding:12px;
+  border-radius:15px;
+  background:#10243b;
+  border:1px solid #28425d;
+}
+
+.choice.selected{
+  background:#245f3b;
+  border-color:var(--green);
+}
+
+.color-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  justify-content:center;
+}
+
+.color{
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  border:3px solid transparent;
+}
+
+.color.selected{
+  border-color:white;
+  transform:scale(1.08);
+}
+
+.achievements{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:11px;
+}
+
+.achievement{
+  padding:15px;
+  border-radius:18px;
+  background:#0d1d30;
+  border:1px solid #223c58;
+}
+
+.achievement.locked{
+  opacity:.42;
+}
+
+.achievement-icon{
+  font-size:32px;
+}
+
+.achievement h4{
+  margin:7px 0 4px;
+}
+
+.achievement p{
+  margin:0;
+  color:var(--muted);
+  font-size:12px;
+}
+
+.log-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  padding:12px 0;
+  border-bottom:1px solid #20364f;
+}
+
+.log-row:last-child{
+  border-bottom:0;
+}
+
+.plus{
+  color:var(--green);
+  font-weight:900;
+}
+
+.minus{
+  color:var(--red);
+  font-weight:900;
+}
+
+input,select{
+  width:100%;
+  padding:13px;
+  border-radius:14px;
+  border:1px solid #29435e;
+  background:#0b1a2c;
+  color:white;
+  outline:none;
+  margin-top:7px;
+}
+
+label{
+  display:block;
+  color:var(--muted);
+  font-size:13px;
+  margin-top:12px;
+}
+
+.primary{
+  width:100%;
+  margin-top:14px;
+  padding:13px;
+  border-radius:14px;
+  background:var(--green);
+  color:#06150d;
+  font-weight:900;
+}
+
+.danger{
+  background:#3c1820;
+  color:#ff9aa5;
+  border:1px solid #6b2935;
+}
+
+.empty{
+  text-align:center;
+  padding:25px;
+  color:var(--muted);
+}
+
+footer{
+  text-align:center;
+  color:#667b91;
+  font-size:12px;
+  margin-top:30px;
+}
+
+@media(max-width:600px){
+  body{padding:12px 9px 40px}
+  .hero{padding:17px;border-radius:24px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .skills,.shop,.achievements{grid-template-columns:1fr}
+  .nav button{font-size:12px}
+  .profile h2{font-size:19px}
+  .avatar{width:70px;height:70px;font-size:42px}
+  .task{align-items:flex-start}
+  .complete{font-size:12px}
+}
 </style>
 </head>
+
 <body>
 <div class="app">
-<div class="top"><div><div class="brand">⚔️ Life RPG</div><div class="sub">حوّل حياتك الحقيقية إلى رحلة تطور</div></div><button class="icon" onclick="openProfile()">⚙️</button></div>
+
+<header>
+  <div class="brand">
+    <div class="logo">⚔️</div>
+    <div>
+      <h1>Life RPG</h1>
+      <p>حوّل حياتك الحقيقية إلى رحلة تطوير</p>
+    </div>
+  </div>
+  <button class="settings-btn" onclick="showSection('character')">⚙️</button>
+</header>
+
 <section class="hero">
-<div class="profile"><div class="avatar" id="avatar">👩🏻</div><div><div class="name" id="name">مغامر جديد</div><div class="rank" id="rank">رتبة F • المستوى 1</div><div class="sub" id="title">ابدأ رحلتك اليوم</div></div></div>
-<div class="barrow"><b>XP</b><div class="bar"><div class="fill" id="xpbar"></div></div><b id="xptext">0/100</b></div>
-<div class="barrow energy"><b>⚡</b><div class="bar"><div class="fill" id="energybar"></div></div><b id="energytext">100/100</b></div>
-<div class="stats"><div class="stat"><b id="coins">0</b><span>💰 عملات</span></div><div class="stat"><b id="streak">0</b><span>🔥 سلسلة</span></div><div class="stat"><b id="doneCount">0</b><span>✅ منجزة</span></div><div class="stat"><b id="skillCount">0</b><span>🧠 مهارات</span></div></div>
+  <div class="profile">
+    <div class="avatar" id="avatar">👩🏻</div>
+    <div>
+      <h2 id="playerName">مغامر جديد</h2>
+      <div class="rank" id="rank">رتبة F • المستوى 1</div>
+      <div class="small" id="levelText">ابدأ رحلتك اليوم</div>
+    </div>
+  </div>
+
+  <div class="progress">
+    <div class="progress-top">
+      <span id="xpText">0 / 100 XP</span>
+      <span>⭐ XP</span>
+    </div>
+    <div class="bar">
+      <div class="fill xp-fill" id="xpBar"></div>
+    </div>
+  </div>
+
+  <div class="progress">
+    <div class="progress-top">
+      <span id="energyText">100 / 100</span>
+      <span>⚡ الطاقة</span>
+    </div>
+    <div class="bar">
+      <div class="fill energy-fill" id="energyBar"></div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <strong id="coins">0</strong>
+      <span>💰 عملات</span>
+    </div>
+    <div class="stat">
+      <strong id="streak">0</strong>
+      <span>🔥 سلسلة</span>
+    </div>
+    <div class="stat">
+      <strong id="skillPoints">0</strong>
+      <span>🧠 مهارات</span>
+    </div>
+    <div class="stat">
+      <strong id="completed">0</strong>
+      <span>✅ منجزة</span>
+    </div>
+  </div>
 </section>
-<div class="tabs"><button class="tab active" onclick="tab('tasks',this)">المهام</button><button class="tab" onclick="tab('skills',this)">المهارات</button><button class="tab" onclick="tab('shop',this)">المتجر</button><button class="tab" onclick="tab('log',this)">السجل</button></div>
-<main id="content"></main>
+
+<nav class="nav">
+  <button class="active" onclick="showSection('tasks',this)">المهام</button>
+  <button onclick="showSection('skills',this)">المهارات</button>
+  <button onclick="showSection('shop',this)">المتجر</button>
+  <button onclick="showSection('log',this)">السجل</button>
+</nav>
+
+<!-- TASKS -->
+<section id="tasks" class="section active">
+
+<div class="card">
+  <div class="card-title">
+    <h3>🎯 مهام اليوم</h3>
+    <span class="badge" id="today"></span>
+  </div>
+
+  <div id="taskList"></div>
 </div>
-<div class="overlay" id="profileModal"><div class="modal"><div class="sectionhead"><h2>👤 شخصيتك</h2><button class="ghost" onclick="closeM('profileModal')">إغلاق</button></div><div class="choice"><button id="female" onclick="gender('female')">👩🏻<br><b>بنت</b></button><button id="male" onclick="gender('male')">👨🏻<br><b>ولد</b></button></div><div class="form" style="margin-top:10px"><input class="field" id="nameInput" placeholder="اسم الشخصية"><select class="field" id="style"><option>مغامر</option><option>طالب</option><option>رياضي</option><option>كاجوال</option></select><button class="btn" onclick="saveProfile()">حفظ الشخصية</button></div></div></div>
-<div class="overlay" id="addModal"><div class="modal"><div class="sectionhead"><h2>➕ مهمة واقعية</h2><button class="ghost" onclick="closeM('addModal')">إغلاق</button></div><div class="form"><input class="field" id="taskInput" placeholder="مثال: طبخ وجبة صحية"><select class="field" id="catInput"><option>تطوير ذاتي</option><option>تعلم</option><option>مال وادخار</option><option>طبخ ومنزل</option><option>علاقات</option><option>صحة</option><option>عمل ودراسة</option></select><select class="field" id="xpInput"><option value="10">10 XP • سهل</option><option value="20">20 XP • متوسط</option><option value="35">35 XP • مهم</option><option value="50">50 XP • تحدي</option></select><button class="btn" onclick="addTask()">إضافة</button></div></div></div>
-<div class="toast" id="toast"></div>
+
+<div class="card">
+  <div class="card-title">
+    <h3>🏆 تحدي اليوم</h3>
+    <span class="badge">+50 XP</span>
+  </div>
+
+  <p style="color:var(--muted)">
+    أنجز 3 مهام اليوم لتحصل على مكافأة إضافية.
+  </p>
+
+  <div class="bar">
+    <div class="fill xp-fill" id="challengeBar"></div>
+  </div>
+
+  <button class="primary" id="challengeBtn" onclick="claimChallenge()">
+    استلام مكافأة التحدي
+  </button>
+</div>
+
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="section">
+
+<div class="card">
+  <div class="card-title">
+    <h3>🧠 شجرة المهارات</h3>
+    <span class="badge">طوّر شخصيتك</span>
+  </div>
+
+  <div class="skills" id="skillsList"></div>
+</div>
+
+</section>
+
+<!-- SHOP -->
+<section id="shop" class="section">
+
+<div class="card">
+  <div class="card-title">
+    <h3>🛒 متجر الشخصية</h3>
+    <span class="badge">💰 <span id="shopCoins">0</span></span>
+  </div>
+
+  <div class="shop" id="shopList"></div>
+</div>
+
+</section>
+
+<!-- LOG -->
+<section id="log" class="section">
+
+<div class="card">
+  <div class="card-title">
+    <h3>🏆 الإنجازات</h3>
+  </div>
+
+  <div class="achievements" id="achievements"></div>
+</div>
+
+<div class="card">
+  <div class="card-title">
+    <h3>📖 سجل رحلتك</h3>
+  </div>
+
+  <div id="history"></div>
+</div>
+
+</section>
+
+<!-- CHARACTER -->
+<section id="character" class="section">
+
+<div class="card">
+  <div class="card-title">
+    <h3>👤 شخصيتك</h3>
+  </div>
+
+  <div class="character">
+    <div class="big-avatar" id="bigAvatar">👩🏻</div>
+
+    <input id="nameInput" placeholder="اكتب اسم شخصيتك">
+
+    <label>اختر الشخصية</label>
+
+    <div class="choice-row">
+      <button class="choice" id="femaleBtn" onclick="chooseGender('female')">
+        👩🏻 بنت
+      </button>
+      <button class="choice" id="maleBtn" onclick="chooseGender('male')">
+        👨🏻 ولد
+      </button>
+    </div>
+
+    <label>لون الشخصية</label>
+
+    <div class="color-row">
+      <button class="color" style="background:#f4c7a1" onclick="chooseSkin('🏻')"> </button>
+      <button class="color" style="background:#d99b72" onclick="chooseSkin('🏽')"> </button>
+      <button class="color" style="background:#9b6547" onclick="chooseSkin('🏾')"> </button>
+      <button class="color" style="background:#593b2d" onclick="chooseSkin('🏿')"> </button>
+    </div>
+
+    <button class="primary" onclick="saveCharacter()">
+      💾 حفظ الشخصية
+    </button>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">
+    <h3>⚙️ إعدادات اللعبة</h3>
+  </div>
+
+  <button class="primary danger" onclick="resetGame()">
+    🗑️ إعادة ضبط اللعبة
+  </button>
+</div>
+
+</section>
+
+<footer>
+  Life RPG • حياتك لعبة، وأنت البطل ⚔️
+</footer>
+
+</div>
+
 <script>
-const K="lifeRPG_v2",D={profile:{name:"مغامر جديد",gender:"female",style:"مغامر"},xp:0,level:1,coins:0,energy:100,streak:0,totalDone:0,skills:{"تعلم":0,"تطوير ذاتي":0,"مال وادخار":0,"طبخ ومنزل":0,"علاقات":0,"صحة":0},tasks:[{id:1,title:"ادخر مبلغًا صغيرًا اليوم",cat:"مال وادخار",xp:20,done:false},{id:2,title:"حضّر وجبة منزلية بنفسك",cat:"طبخ ومنزل",xp:20,done:false},{id:3,title:"تعلّم شيئًا مفيدًا لمدة 20 دقيقة",cat:"تعلم",xp:20,done:false},{id:4,title:"تواصل مع شخص مهم لك برسالة لطيفة",cat:"علاقات",xp:15,done:false},{id:5,title:"رتّب مساحة صغيرة من غرفتك",cat:"تطوير ذاتي",xp:10,done:false}],log:[],owned:[]};
-let s={...D,...JSON.parse(localStorage.getItem(K)||"{}")}; s.profile={...D.profile,...(s.profile||{})}; s.skills={...D.skills,...(s.skills||{})};
-const save=()=>localStorage.setItem(K,JSON.stringify(s));
-function rank(){return s.level>=30?"S":s.level>=20?"A":s.level>=12?"B":s.level>=7?"C":s.level>=3?"D":"F"}
-function render(){avatar.textContent=s.profile.gender==="female"?"👩🏻":"👨🏻";name.textContent=s.profile.name;rankEl.textContent=`رتبة ${rank()} • المستوى ${s.level}`;title.textContent=s.profile.style;let n=s.level*100;xpbar.style.width=Math.min(100,s.xp/n*100)+"%";xptext.textContent=`${s.xp}/${n}`;energybar.style.width=s.energy+"%";energytext.textContent=s.energy+"/100";coins.textContent=s.coins;streak.textContent=s.streak;doneCount.textContent=s.totalDone;skillCount.textContent=Object.values(s.skills).filter(v=>v>0).length;save()}
-const rankEl=document.getElementById("rank");
-function tab(t,el){document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));el.classList.add("active");({tasks:tasks,skills,shop,log})[t]()}
-function tasks(){content.innerHTML=`<div class="sectionhead"><h2>🎯 مهام اليوم</h2><button class="btn" onclick="openM('addModal')">+ مهمة</button></div>${s.tasks.map(t=>`<div class="task ${t.done?"done":""}"><button class="check" onclick="done(${t.id})">${t.done?"✓":""}</button><div class="taskmain"><div class="tasktitle">${safe(t.title)}</div><div class="taskmeta"><span class="tag">${t.cat}</span> <span class="xp">+${t.xp} XP</span></div></div></div>`).join("")}<div class="grid"><div class="card"><h3>💡 نظام واقعي</h3><div class="muted">المهام مبنية على أفعال حقيقية: تعلم، ادخار، طبخ، علاقات، صحة وتنظيم.</div></div><div class="card"><h3>🔥 سلسلة</h3><div class="big">${s.streak}</div><div class="muted">استمر كل يوم.</div></div></div>`}
-function skills(){content.innerHTML=`<div class="sectionhead"><h2>🧠 مهارات الحياة</h2></div><div class="grid">${Object.entries(s.skills).map(([k,v])=>`<div class="card"><h3>${k}</h3><div class="big">${v} XP</div><div class="bar"><div class="fill" style="width:${Math.min(100,v/300*100)}%"></div></div></div>`).join("")}</div>`}
-function shop(){let a=[["☕","استراحة فاخرة",60],["🎧","وقت ترفيه",120],["🍕","وجبة تحبها",180],["🎮","جلسة لعب",250],["👕","ستايل جديد",350],["🏆","شارة أسطورية",500]];content.innerHTML=`<div class="sectionhead"><h2>🛒 المتجر</h2><span class="muted">${s.coins} 💰</span></div><div class="grid">${a.map((x,i)=>`<div class="card"><div style="font-size:34px">${x[0]}</div><h3>${x[1]}</h3><div class="muted">${x[2]} 💰</div><button class="btn" style="margin-top:9px" onclick="buy(${i},${x[2]})">${s.owned.includes(i)?"تم الشراء":"شراء"}</button></div>`).join("")}</div>`}
-function log(){content.innerHTML=`<div class="sectionhead"><h2>📅 السجل اليومي</h2><button class="ghost" onclick="newDay()">يوم جديد</button></div>${s.log.length?s.log.slice().reverse().map(x=>`<div class="task"><div>🏅</div><div class="taskmain"><div class="tasktitle">${safe(x.text)}</div><div class="taskmeta">${x.date} • +${x.xp} XP</div></div></div>`).join(""):`<div class="empty">أول إنجاز يبدأ هنا ✨</div>`}`}
-function done(id){let t=s.tasks.find(x=>x.id===id);if(!t||t.done)return;t.done=true;s.xp+=t.xp;s.coins+=Math.max(5,Math.floor(t.xp/2));s.energy=Math.max(0,s.energy-5);s.skills[t.cat]=(s.skills[t.cat]||0)+t.xp;s.totalDone++;s.streak=Math.max(1,s.streak);s.log.push({text:t.title,xp:t.xp,date:new Date().toLocaleString("ar-SA")});while(s.xp>=s.level*100){s.xp-=s.level*100;s.level++;s.coins+=50}render();tasks();toast("إنجاز رائع! +" + t.xp + " XP 🎉")}
-function addTask(){let title=taskInput.value.trim();if(!title)return;let xp=+xpInput.value;s.tasks.push({id:Date.now(),title,cat:catInput.value,xp,done:false});taskInput.value="";closeM("addModal");render();tasks();toast("تمت إضافة المهمة")}
-function buy(i,c){if(s.owned.includes(i))return;if(s.coins<c){toast("تحتاج عملات أكثر 💰");return}s.coins-=c;s.owned.push(i);render();shop();toast("تم الشراء 🎁")}
-function gender(g){s.profile.gender=g;female.classList.toggle("selected",g==="female");male.classList.toggle("selected",g==="male")}
-function openProfile(){nameInput.value=s.profile.name;style.value=s.profile.style;gender(s.profile.gender);openM("profileModal")}
-function saveProfile(){s.profile.name=nameInput.value.trim()||"مغامر";s.profile.style=style.value;render();closeM("profileModal");toast("تم حفظ الشخصية")}
-function newDay(){s.tasks.forEach(t=>t.done=false);s.energy=100;save();tasks();toast("بدأ يوم جديد 🌅")}
-function openM(id){document.getElementById(id).classList.add("show")}function closeM(id){document.getElementById(id).classList.remove("show")}
-function toast(t){let x=document.getElementById("toast");x.textContent=t;x.classList.add("show");clearTimeout(window.tt);window.tt=setTimeout(()=>x.classList.remove("show"),1700)}
-function safe(x){return String(x).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",""":"&quot;","'":"&#039;"}[m]))}
-render();tasks();
+/* =========================
+   LIFE RPG
+   ========================= */
+
+const defaultTasks = [
+  {
+    id:"save",
+    name:"ادخر مبلغًا اليوم",
+    category:"💰 المال",
+    icon:"💵",
+    xp:35,
+    coins:25
+  },
+  {
+    id:"cook",
+    name:"حضّر وجبة منزلية",
+    category:"🍳 الحياة اليومية",
+    icon:"🍳",
+    xp:30,
+    coins:20
+  },
+  {
+    id:"study",
+    name:"تعلّم شيئًا جديدًا",
+    category:"🧠 تطوير الذات",
+    icon:"📚",
+    xp:40,
+    coins:25
+  },
+  {
+    id:"exercise",
+    name:"تحرّك أو مارس الرياضة",
+    category:"💪 الصحة",
+    icon:"🏃",
+    xp:35,
+    coins:25
+  },
+  {
+    id:"relationship",
+    name:"تواصل مع شخص مهم",
+    category:"🤝 العلاقات",
+    icon:"💬",
+    xp:30,
+    coins:20
+  },
+  {
+    id:"clean",
+    name:"رتّب جزءًا من غرفتك",
+    category:"🏠 الحياة اليومية",
+    icon:"🧹",
+    xp:20,
+    coins:15
+  },
+  {
+    id:"read",
+    name:"اقرأ لمدة 15 دقيقة",
+    category:"📖 تطوير الذات",
+    icon:"📖",
+    xp:25,
+    coins:15
+  },
+  {
+    id:"sleep",
+    name:"التزم بوقت نوم مناسب",
+    category:"😴 الصحة",
+    icon:"🌙",
+    xp:30,
+    coins:20
+  }
+];
+
+const skillData = [
+  {id:"money",name:"المال",icon:"💰",color:"gold"},
+  {id:"health",name:"الصحة",icon:"💪",color:"green"},
+  {id:"mind",name:"العقل",icon:"🧠",color:"purple"},
+  {id:"social",name:"العلاقات",icon:"🤝",color:"blue"},
+  {id:"home",name:"الحياة اليومية",icon:"🏠",color:"cyan"},
+  {id:"discipline",name:"الانضباط",icon:"🎯",color:"red"}
+];
+
+const shopItems = [
+  {
+    id:"coffee",
+    name:"قهوة الطاقة",
+    icon:"☕",
+    price:80,
+    desc:"تستعيد 30 طاقة.",
+    action:"energy"
+  },
+  {
+    id:"xp",
+    name:"كتاب الخبرة",
+    icon:"📘",
+    price:120,
+    desc:"تحصل على 50 XP.",
+    action:"xp"
+  },
+  {
+    id:"streak",
+    name:"تعزيز السلسلة",
+    icon:"🔥",
+    price:200,
+    desc:"مكافأة رمزية للسلسلة.",
+    action:"streak"
+  },
+  {
+    id:"skill",
+    name:"نقطة مهارة",
+    icon:"💎",
+    price:250,
+    desc:"نقطة مجانية لتطوير مهارة.",
+    action:"skill"
+  }
+];
+
+const achievementData = [
+  {
+    id:"first",
+    icon:"🌟",
+    name:"البداية",
+    desc:"أنجز أول مهمة.",
+    check:s=>s.completed>=1
+  },
+  {
+    id:"five",
+    icon:"🔥",
+    name:"في الطريق",
+    desc:"أنجز 5 مهام.",
+    check:s=>s.completed>=5
+  },
+  {
+    id:"ten",
+    icon:"🏆",
+    name:"المحارب",
+    desc:"أنجز 10 مهام.",
+    check:s=>s.completed>=10
+  },
+  {
+    id:"twenty",
+    icon:"👑",
+    name:"أسطورة الحياة",
+    desc:"أنجز 20 مهمة.",
+    check:s=>s.completed>=20
+  },
+  {
+    id:"coins",
+    icon:"💰",
+    name:"جامع الثروة",
+    desc:"اجمع 500 عملة.",
+    check:s=>s.totalCoins>=500
+  },
+  {
+    id:"level5",
+    icon:"⚔️",
+    name:"مغامر قوي",
+    desc:"الوصول للمستوى 5.",
+    check:s=>s.level>=5
+  }
+];
+
+let state = loadState();
+
+function initialState(){
+  return {
+    name:"مغامر جديد",
+    gender:"female",
+    skin:"🏻",
+    level:1,
+    xp:0,
+    coins:0,
+    energy:100,
+    streak:0,
+    skillPoints:0,
+    completed:0,
+    totalCoins:0,
+    lastDay:"",
+    completedToday:[],
+    challengeClaimed:false,
+    history:[],
+    owned:[],
+    skills:{
+      money:0,
+      health:0,
+      mind:0,
+      social:0,
+      home:0,
+      discipline:0
+    }
+  };
+}
+
+function loadState(){
+  try{
+    const saved=localStorage.getItem("lifeRPG");
+    return saved ? {...initialState(),...JSON.parse(saved)} : initialState();
+  }catch(e){
+    return initialState();
+  }
+}
+
+function save(){
+  localStorage.setItem("lifeRPG",JSON.stringify(state));
+}
+
+function todayKey(){
+  const d=new Date();
+  return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+}
+
+function setupDay(){
+
+  const today=todayKey();
+
+  if(state.lastDay!==today){
+
+    if(state.lastDay){
+
+      const previous=new Date(state.lastDay);
+      const now=new Date();
+
+      const diff=Math.floor(
+        (new Date(today)-previous)/86400000
+      );
+
+      if(diff===1){
+        if(state.completedToday.length>0){
+          state.streak++;
+        }else{
+          state.streak=0;
+        }
+      }else{
+        state.streak=0;
+      }
+
+    }
+
+    state.lastDay=today;
+    state.completedToday=[];
+    state.challengeClaimed=false;
+    state.energy=100;
+
+    save();
+  }
+}
+
+function xpNeeded(){
+  return 100+(state.level-1)*50;
+}
+
+function rankName(){
+
+  if(state.level>=20) return "S";
+  if(state.level>=15) return "A";
+  if(state.level>=10) return "B";
+  if(state.level>=5) return "C";
+  if(state.level>=3) return "D";
+  return "F";
+}
+
+function addXP(amount){
+
+  state.xp+=amount;
+
+  while(state.xp>=xpNeeded()){
+
+    state.xp-=xpNeeded();
+    state.level++;
+
+    state.skillPoints++;
+
+    addHistory(
+      "⬆️",
+      "ارتقيت إلى المستوى "+state.level,
+      "+"+state.skillPoints+" نقطة مهارة"
+    );
+
+    alert("🎉 مبروك!\nوصلت إلى المستوى "+state.level);
+  }
+
+  save();
+}
+
+function addCoins(amount){
+
+  state.coins+=amount;
+
+  if(amount>0){
+    state.totalCoins+=amount;
+  }
+
+  save();
+}
+
+function addHistory(icon,title,value){
+
+  state.history.unshift({
+    icon,
+    title,
+    value,
+    date:new Date().toLocaleString("ar-SA")
+  });
+
+  state.history=state.history.slice(0,50);
+
+  save();
+}
+
+function completeTask(id){
+
+  setupDay();
+
+  if(state.completedToday.includes(id)) return;
+
+  const task=defaultTasks.find(t=>t.id===id);
+
+  if(!task) return;
+
+  const energyCost=10;
+
+  if(state.energy<energyCost){
+    alert("⚡ طاقتك منخفضة. استخدم عنصرًا من المتجر أو انتظر حتى الغد.");
+    return;
+  }
+
+  state.energy-=energyCost;
+
+  state.completedToday.push(id);
+  state.completed++;
+
+  addXP(task.xp);
+  addCoins(task.coins);
+
+  increaseSkill(id);
+
+  addHistory(
+    task.icon,
+    task.name,
+    "+"+task.xp+" XP • +"+task.coins+" 💰"
+  );
+
+  save();
+  render();
+}
+
+function increaseSkill(id){
+
+  let skill="discipline";
+
+  if(id==="save") skill="money";
+  if(id==="cook" || id==="clean") skill="home";
+  if(id==="study" || id==="read") skill="mind";
+  if(id==="exercise" || id==="sleep") skill="health";
+  if(id==="relationship") skill="social";
+
+  if(state.skills[skill]<100){
+    state.skills[skill]++;
+  }
+}
+
+function render(){
+
+  setupDay();
+
+  renderHeader();
+  renderTasks();
+  renderSkills();
+  renderShop();
+  renderAchievements();
+  renderHistory();
+  renderCharacter();
+}
+
+function renderHeader(){
+
+  document.getElementById("avatar").textContent=
+    state.gender==="female" ? "👩"+state.skin : "👨"+state.skin;
+
+  document.getElementById("bigAvatar").textContent=
+    state.gender==="female" ? "👩"+state.skin : "👨"+state.skin;
+
+  document.getElementById("playerName").textContent=state.name;
+
+  document.getElementById("rank").textContent=
+    "رتبة "+rankName()+" • المستوى "+state.level;
+
+  document.getElementById("levelText").textContent=
+    "استمر في تطوير حياتك خطوة بخطوة";
+
+  const need=xpNeeded();
+
+  document.getElementById("xpText").textContent=
+    state.xp+" / "+need+" XP";
+
+  document.getElementById("xpBar").style.width=
+    Math.min(100,state.xp/need*100)+"%";
+
+  document.getElementById("energyText").textContent=
+    state.energy+" / 100";
+
+  document.getElementById("energyBar").style.width=
+    state.energy+"%";
+
+  document.getElementById("coins").textContent=state.coins;
+  document.getElementById("shopCoins").textContent=state.coins;
+  document.getElementById("streak").textContent=state.streak;
+  document.getElementById("skillPoints").textContent=state.skillPoints;
+  document.getElementById("completed").textContent=state.completed;
+
+  document.getElementById("today").textContent=
+    new Date().toLocaleDateString("ar-SA",{
+      weekday:"long",
+      month:"short",
+      day:"numeric"
+    });
+
+  const challenge=
+    Math.min(3,state.completedToday.length);
+
+  document.getElementById("challengeBar").style.width=
+    challenge/3*100+"%";
+
+  const btn=document.getElementById("challengeBtn");
+
+  if(state.challengeClaimed){
+    btn.textContent="✅ تم استلام المكافأة";
+    btn.disabled=true;
+  }else if(challenge>=3){
+    btn.textContent="🎁 استلام +50 XP + 50 💰";
+    btn.disabled=false;
+  }else{
+    btn.textContent="🔒 أنجز 3 مهام أولًا";
+    btn.disabled=true;
+  }
+}
+
+function renderTasks(){
+
+  const list=document.getElementById("taskList");
+
+  if(!list)return;
+
+  let html="";
+
+  const categories={};
+
+  defaultTasks.forEach(task=>{
+
+    if(!categories[task.category]){
+      categories[task.category]=[];
+    }
+
+    categories[task.category].push(task);
+  });
+
+  Object.keys(categories).forEach(category=>{
+
+    html+=`<div class="category-title">${category}</div>`;
+
+    categories[category].forEach(task=>{
+
+      const done=state.completedToday.includes(task.id);
+
+      html+=`
+      <div class="task ${done?"done":""}">
+
+        <div class="task-icon">${task.icon}</div>
+
+        <div class="task-main">
+          <div class="task-name">${task.name}</div>
+          <div class="task-meta">
+            +${task.xp} XP • +${task.coins} 💰 • -10 ⚡
+          </div>
+        </div>
+
+        <button
+          class="complete"
+          ${done?"disabled":""}
+          onclick="completeTask('${task.id}')">
+          ${done?"✓ تم":"إنجاز"}
+        </button>
+
+      </div>
+      `;
+    });
+  });
+
+  list.innerHTML=html;
+}
+
+function renderSkills(){
+
+  const box=document.getElementById("skillsList");
+
+  if(!box)return;
+
+  box.innerHTML=skillData.map(skill=>{
+
+    const level=state.skills[skill.id]||0;
+
+    return `
+    <div class="skill">
+
+      <div class="skill-head">
+        <span class="skill-name">
+          ${skill.icon} ${skill.name}
+        </span>
+
+        <span class="skill-level">
+          Lv.${level}
+        </span>
+      </div>
+
+      <div class="skill-bar">
+        <div
+          class="skill-fill"
+          style="width:${Math.min(100,level)}%">
+        </div>
+      </div>
+
+    </div>
+    `;
+
+  }).join("");
+}
+
+function renderShop(){
+
+  const box=document.getElementById("shopList");
+
+  if(!box)return;
+
+  box.innerHTML=shopItems.map(item=>{
+
+    const can=state.coins>=item.price;
+
+    return `
+    <div class="item">
+
+      <div class="item-icon">${item.icon}</div>
+
+      <h4>${item.name}</h4>
+
+      <p>${item.desc}</p>
+
+      <button
+        class="buy"
+        ${can?"":"disabled"}
+        onclick="buyItem('${item.id}')">
+        💰 ${item.price}
+      </button>
+
+    </div>
+    `;
+
+  }).join("");
+}
+
+function buyItem(id){
+
+  const item=shopItems.find(x=>x.id===id);
+
+  if(!item)return;
+
+  if(state.coins<item.price){
+    alert("💰 لا تملك عملات كافية.");
+    return;
+  }
+
+  state.coins-=item.price;
+
+  if(item.action==="energy"){
+    state.energy=Math.min(100,state.energy+30);
+  }
+
+  if(item.action==="xp"){
+    addXP(50);
+  }
+
+  if(item.action==="streak"){
+    state.streak++;
+  }
+
+  if(item.action==="skill"){
+    state.skillPoints++;
+  }
+
+  addHistory(
+    item.icon,
+    "اشتريت "+item.name,
+    "-"+item.price+" 💰"
+  );
+
+  save();
+  render();
+}
+
+function claimChallenge(){
+
+  if(state.challengeClaimed) return;
+
+  if(state.completedToday.length<3) return;
+
+  state.challengeClaimed=true;
+
+  addXP(50);
+  addCoins(50);
+
+  addHistory(
+    "🏆",
+    "أكملت تحدي اليوم",
+    "+50 XP • +50 💰"
+  );
+
+  save();
+  render();
+}
+
+function renderAchievements(){
+
+  const box=document.getElementById("achievements");
+
+  if(!box)return;
+
+  box.innerHTML=achievementData.map(a=>{
+
+    const unlocked=a.check(state);
+
+    return `
+    <div class="achievement ${unlocked?"":"locked"}">
+
+      <div class="achievement-icon">
+        ${unlocked?a.icon:"🔒"}
+      </div>
+
+      <h4>${a.name}</h4>
+
+      <p>${a.desc}</p>
+
+      <div class="small" style="margin-top:7px">
+        ${unlocked?"✅ مكتمل":"🔒 غير مكتمل"}
+      </div>
+
+    </div>
+    `;
+
+  }).join("");
+}
+
+function renderHistory(){
+
+  const box=document.getElementById("history");
+
+  if(!box)return;
+
+  if(state.history.length===0){
+
+    box.innerHTML=`
+      <div class="empty">
+        📖 لم تبدأ رحلتك بعد.<br>
+        أنجز أول مهمة وستظهر هنا.
+      </div>
+    `;
+
+    return;
+  }
+
+  box.innerHTML=state.history.map(row=>`
+
+    <div class="log-row">
+
+      <div>
+        <strong>${row.icon} ${row.title}</strong>
+        <div class="small">${row.date}</div>
+      </div>
+
+      <span class="${row.value.includes("-")?"minus":"plus"}">
+        ${row.value}
+      </span>
+
+    </div>
+
+  `).join("");
+}
+
+function renderCharacter(){
+
+  const input=document.getElementById("nameInput");
+
+  if(input){
+    input.value=state.name;
+  }
+
+  document.getElementById("femaleBtn")
+    .classList.toggle("selected",state.gender==="female");
+
+  document.getElementById("maleBtn")
+    .classList.toggle("selected",state.gender==="male");
+}
+
+function chooseGender(gender){
+
+  state.gender=gender;
+
+  render();
+
+}
+
+function chooseSkin(skin){
+
+  state.skin=skin;
+
+  render();
+
+}
+
+function saveCharacter(){
+
+  const input=document.getElementById("nameInput");
+
+  if(input && input.value.trim()){
+    state.name=input.value.trim();
+  }
+
+  save();
+  render();
+
+  alert("✅ تم حفظ شخصيتك!");
+}
+
+function showSection(id,button){
+
+  document.querySelectorAll(".section")
+    .forEach(section=>section.classList.remove("active"));
+
+  const section=document.getElementById(id);
+
+  if(section){
+    section.classList.add("active");
+  }
+
+  if(button){
+
+    document.querySelectorAll(".nav button")
+      .forEach(btn=>btn.classList.remove("active"));
+
+    button.classList.add("active");
+  }
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
+function resetGame(){
+
+  const yes=confirm(
+    "⚠️ هل أنت متأكد؟\n\nسيتم حذف كل XP والعملات والمهام والإنجازات."
+  );
+
+  if(!yes)return;
+
+  localStorage.removeItem("lifeRPG");
+
+  state=initialState();
+
+  save();
+  render();
+
+  alert("🔄 تم بدء رحلة جديدة!");
+}
+
+/* تشغيل اللعبة */
+setupDay();
+render();
 </script>
-</body></html>
+
+</body>
+</html>
